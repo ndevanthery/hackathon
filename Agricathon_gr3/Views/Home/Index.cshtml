@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to agricathon</h1>
+    <p>this project was developped in the context of the agriculture hackathon of 2022 organised by HES</p>
+</div>
+
+<div class="text-center">
+    <button type="button" onclick="location.href='@Url.Action("Login", "Home")'">Log in</button>
+    <br />
+    <button type="button" onclick="location.href='@Url.Action("Register", "Home")'">Register</button>
+
+</div>
