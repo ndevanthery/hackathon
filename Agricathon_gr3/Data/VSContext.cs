@@ -25,7 +25,7 @@ namespace Agricathon_gr3.Models
         //    builder.AddConsole();
         //});
 
-        public static string ConnectionString { get; set; } = @"Data Source=153.109.124.35;Initial Catalog=Agrickathon;Integrated Security=False;User Id=6231db;Password=Pwd46231.;MultipleActiveResultSets=True";
+        public static string ConnectionString { get; set; } = @"Data Source=153.109.124.35;Initial Catalog=Dura-farm;Integrated Security=False;User Id=6231db;Password=Pwd46231.;MultipleActiveResultSets=True";
 
         public VSContext()
         {
