@@ -27,7 +27,7 @@ namespace Agricathon_gr3
 
             }
             Console.Write("Done");
-            //CreateHostBuilder(args).Build().Run();
+            CreateHostBuilder(args).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
