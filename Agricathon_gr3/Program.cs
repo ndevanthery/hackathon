@@ -1,3 +1,4 @@
+using Agricathon_gr3.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -13,7 +14,20 @@ namespace Agricathon_gr3
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var context = new VSContext();
+            var e = context.Database.EnsureCreated();
+
+            if (e)
+            {
+                Console.Write("DB created");
+            }
+            else
+            {
+                Console.Write("DB already exists");
+
+            }
+            Console.Write("Done");
+            //CreateHostBuilder(args).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
