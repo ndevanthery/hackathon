@@ -4,10 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Agricathon_gr3.Models
 {
-    public class VSContext : DbContext
+    public class VSContext : IdentityDbContext<IdentityUser, IdentityRole, string>
     {
         public DbSet<Person> PersonDB { get; set; }
         public DbSet<Project> ProjectDB { get; set; }
@@ -40,6 +42,7 @@ namespace Agricathon_gr3.Models
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            base.OnModelCreating(builder);
             builder.Entity<PersProject>().HasKey(x => new { x.PersonId, x.ProjetId });
             builder.Entity<Anwser>().HasKey(x => new { x.QuestionId, x.QuestionnaireId });
 
