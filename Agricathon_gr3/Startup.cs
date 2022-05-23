@@ -26,20 +26,8 @@ namespace Agricathon_gr3
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<VSContext>(options =>
-        options.UseSqlServer(
-            Configuration.GetConnectionString("DefaultConnection")));
-
-
-
-            services.AddIdentity<IdentityUser, IdentityRole>(
-        options => {
-            options.SignIn.RequireConfirmedAccount = false;
-
-            //Other options go here
-        }
-        )
-    .AddEntityFrameworkStores<VSContext>();
+            
+            
 
 
             services.ConfigureApplicationCookie(options =>
@@ -56,9 +44,11 @@ namespace Agricathon_gr3
                 //options.ReturnUrlParameter=""
             });
 
+            services.AddControllersWithViews();
+
             services.AddRazorPages();
 
-            services.AddControllersWithViews();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -88,6 +78,8 @@ namespace Agricathon_gr3
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapRazorPages();
             });
         }
     }

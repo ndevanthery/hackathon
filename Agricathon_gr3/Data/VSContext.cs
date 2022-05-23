@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
+
 namespace Agricathon_gr3.Models
 {
     public class VSContext : IdentityDbContext<IdentityUser, IdentityRole, string>
