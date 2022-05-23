@@ -8,6 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Agricathon_gr3.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Agricathon_gr3
 {
@@ -23,7 +26,29 @@ namespace Agricathon_gr3
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
+            
+
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                // Cookie settings
+                options.Cookie.HttpOnly = true;
+                //options.Cookie.Expiration 
+
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+                //options.LoginPath = "/Identity/Account/Login";
+                //options.LogoutPath = "/Identity/Account/Logout";
+                //options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+                options.SlidingExpiration = true;
+                //options.ReturnUrlParameter=""
+            });
+
             services.AddControllersWithViews();
+
+            services.AddRazorPages();
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +69,8 @@ namespace Agricathon_gr3
 
             app.UseRouting();
 
+            app.UseAuthentication();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -51,6 +78,8 @@ namespace Agricathon_gr3
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapRazorPages();
             });
         }
     }
