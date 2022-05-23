@@ -9,7 +9,5 @@ namespace Agricathon_gr3.Models
         public int TypePId { get; set; }
         [Required]
         public string TypeP { get; set; }
-
-        public virtual List<Person> Persons { get; set; }
     }
 }

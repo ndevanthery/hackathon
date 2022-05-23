@@ -27,9 +27,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Phase)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Person)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -50,9 +47,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Phase.NamePhase)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Person.Email)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.QuestionnaireId">Edit</a> |

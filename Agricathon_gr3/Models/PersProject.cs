@@ -13,7 +13,6 @@ namespace Agricathon_gr3.Models
         [Required]
         public int ProjetId { get; set; }
 
-        public virtual Person Person { get; set; }
         public virtual Project Project { get; set; }
     }
 }

@@ -21,7 +21,7 @@ namespace Agricathon_gr3.Controllers
         // GET: Questionnaires
         public async Task<IActionResult> Index()
         {
-            var vSContext = _context.QuestionnaireDB.Include(q => q.Person).Include(q => q.Phase).Include(q => q.Project);
+            var vSContext = _context.QuestionnaireDB.Include(q => q.Phase).Include(q => q.Project);
             return View(await vSContext.ToListAsync());
         }
 
@@ -34,7 +34,6 @@ namespace Agricathon_gr3.Controllers
             }
 
             var questionnaire = await _context.QuestionnaireDB
-                .Include(q => q.Person)
                 .Include(q => q.Phase)
                 .Include(q => q.Project)
                 .FirstOrDefaultAsync(m => m.QuestionnaireId == id);
@@ -49,7 +48,6 @@ namespace Agricathon_gr3.Controllers
         // GET: Questionnaires/Create
         public IActionResult Create()
         {
-            ViewData["PersonId"] = new SelectList(_context.PersonDB, "PersonId", "Email");
             ViewData["PhaseId"] = new SelectList(_context.PhaseDB, "PhaseId", "NamePhase");
             ViewData["ProjectId"] = new SelectList(_context.ProjectDB, "ProjectId", "NameProject");
             return View();
@@ -68,7 +66,6 @@ namespace Agricathon_gr3.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PersonId"] = new SelectList(_context.PersonDB, "PersonId", "Email", questionnaire.PersonId);
             ViewData["PhaseId"] = new SelectList(_context.PhaseDB, "PhaseId", "NamePhase", questionnaire.PhaseId);
             ViewData["ProjectId"] = new SelectList(_context.ProjectDB, "ProjectId", "NameProject", questionnaire.ProjectId);
             return View(questionnaire);
@@ -87,7 +84,6 @@ namespace Agricathon_gr3.Controllers
             {
                 return NotFound();
             }
-            ViewData["PersonId"] = new SelectList(_context.PersonDB, "PersonId", "Email", questionnaire.PersonId);
             ViewData["PhaseId"] = new SelectList(_context.PhaseDB, "PhaseId", "NamePhase", questionnaire.PhaseId);
             ViewData["ProjectId"] = new SelectList(_context.ProjectDB, "ProjectId", "NameProject", questionnaire.ProjectId);
             return View(questionnaire);
@@ -125,7 +121,6 @@ namespace Agricathon_gr3.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PersonId"] = new SelectList(_context.PersonDB, "PersonId", "Email", questionnaire.PersonId);
             ViewData["PhaseId"] = new SelectList(_context.PhaseDB, "PhaseId", "NamePhase", questionnaire.PhaseId);
             ViewData["ProjectId"] = new SelectList(_context.ProjectDB, "ProjectId", "NameProject", questionnaire.ProjectId);
             return View(questionnaire);
@@ -140,7 +135,6 @@ namespace Agricathon_gr3.Controllers
             }
 
             var questionnaire = await _context.QuestionnaireDB
-                .Include(q => q.Person)
                 .Include(q => q.Phase)
                 .Include(q => q.Project)
                 .FirstOrDefaultAsync(m => m.QuestionnaireId == id);
