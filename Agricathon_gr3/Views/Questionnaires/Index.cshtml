@@ -13,9 +13,6 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ProjetId)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.NameQuestionnaire)
             </th>
             <th>
@@ -23,6 +20,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.TypeRId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Project)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Phase)
@@ -37,9 +37,6 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ProjetId)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.NameQuestionnaire)
             </td>
             <td>
@@ -47,6 +44,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TypeRId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Project.NameProject)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Phase.NamePhase)

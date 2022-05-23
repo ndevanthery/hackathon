@@ -11,7 +11,7 @@ namespace Agricathon_gr3.Models
         [Key]
         public int QuestionnaireId { get; set; }
         [Required]
-        public int ProjetId { get; set; }
+        public int ProjectId { get; set; }
         [Required]
         public string NameQuestionnaire { get; set; }
         [Required]
