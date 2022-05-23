@@ -37,9 +37,9 @@ namespace Agricathon_gr3
                 //options.Cookie.Expiration 
 
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
-                options.LoginPath = "/Identity/Account/Login";
-                options.LogoutPath = "/Identity/Account/Logout";
-                options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+                //options.LoginPath = "/Identity/Account/Login";
+                //options.LogoutPath = "/Identity/Account/Logout";
+                //options.AccessDeniedPath = "/Identity/Account/AccessDenied";
                 options.SlidingExpiration = true;
                 //options.ReturnUrlParameter=""
             });
