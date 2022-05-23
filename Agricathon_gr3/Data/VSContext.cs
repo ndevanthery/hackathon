@@ -12,7 +12,7 @@ namespace Agricathon_gr3.Models
 {
     public class VSContext : IdentityDbContext<IdentityUser, IdentityRole, string>
     {
-        public DbSet<Person> PersonDB { get; set; }
+        
         public DbSet<Project> ProjectDB { get; set; }
         public DbSet<PersProject> PersProjectDB { get; set; }
         public DbSet<TypePerson> TypePersonDB { get; set; }

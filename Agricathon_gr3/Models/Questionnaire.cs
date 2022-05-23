@@ -25,7 +25,6 @@ namespace Agricathon_gr3.Models
 
         public virtual Project Project { get; set; }
         public virtual Phase Phase { get; set; }
-        public virtual Person Person { get; set; }
         public virtual TypeResult TypeResult { get; set; }
         public virtual List<Anwser> Anwsers { get; set; }
     }
