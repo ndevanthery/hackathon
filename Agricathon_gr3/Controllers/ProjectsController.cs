@@ -68,8 +68,16 @@ namespace Agricathon_gr3.Controllers
             {
                 return NotFound();
             }
+            var phase = await _context.PhaseDB
+                .FirstOrDefaultAsync(m => m.PhaseId == project.PhaseId);
 
-            return View(project);
+            ProjectDetailVM projectDetailVM = new ProjectDetailVM();
+            projectDetailVM.NameProject = project.NameProject;
+            projectDetailVM.Phase = phase.NamePhase;
+            projectDetailVM.Place = project.Place;
+            projectDetailVM.ProjectId = project.ProjectId;
+
+            return View(projectDetailVM);
         }
 
         // GET: Projects/Create
