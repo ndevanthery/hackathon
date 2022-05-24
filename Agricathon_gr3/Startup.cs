@@ -46,6 +46,10 @@ namespace Agricathon_gr3
 
             services.AddControllersWithViews();
 
+            services.AddDbContext<VSContext>(options =>
+                   options.UseSqlServer(
+                       Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddRazorPages();
 
             

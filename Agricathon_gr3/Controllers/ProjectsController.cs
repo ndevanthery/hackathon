@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Agricathon_gr3.Models;
+using System.Security.Claims;
 
 namespace Agricathon_gr3.Controllers
 {
@@ -18,11 +19,38 @@ namespace Agricathon_gr3.Controllers
             _context = context;
         }
 
+        //GET : Projects by user ID
+        public async Task<IActionResult> MyProjects()
+        {
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var List = _context.PersProjectDB;
+            List<Project> ListProject = new List<Project>();
+            foreach(var m in List)
+            {
+                if(m.PersonId == currentUserId)
+                {
+                    ListProject.Add(m.Project);
+                }
+            }
+            //Where(m=>m.PersonId==currentUserId).ToListAsync();
+            return View(ListProject);
+        }
+
         // GET: Projects
         public async Task<IActionResult> Index()
         {
-            var vSContext = _context.ProjectDB.Include(p => p.Phase);
-            return View(await vSContext.ToListAsync());
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            List<PersProject> List =await _context.PersProjectDB.ToListAsync();
+            List<Project> ListProject = new List<Project>();
+            foreach (PersProject m in List)
+            {
+                if (m.PersonId == currentUserId)
+                {
+                    ListProject.Add(m.Project);
+                }
+            }
+            //Where(m=>m.PersonId==currentUserId).ToListAsync();
+            return View(ListProject);
         }
 
         // GET: Projects/Details/5

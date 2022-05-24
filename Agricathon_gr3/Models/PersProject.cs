@@ -9,9 +9,9 @@ namespace Agricathon_gr3.Models
     public class PersProject
     {
         [Key]
-        public int PersonId { get; set; }
+        public string PersonId { get; set; }
         [Required]
-        public int ProjetId { get; set; }
+        public int ProjectId { get; set; }
 
         public virtual Project Project { get; set; }
     }
