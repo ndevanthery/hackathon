@@ -1,4 +1,4 @@
-﻿@model Agricathon_gr3.Models.Project
+﻿@model Agricathon_gr3.Models.ProjectDetailVM
 
 @{
     ViewData["Title"] = "Details";
@@ -7,15 +7,9 @@
 <h1>Details</h1>
 
 <div>
-    <h4>Project</h4>
+    <h4>@Html.DisplayFor(model => model.NameProject)</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NameProject)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NameProject)
-        </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Place)
         </dt>
@@ -26,11 +20,12 @@
             @Html.DisplayNameFor(model => model.Phase)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Phase.NamePhase)
+            @Html.DisplayFor(model => model.Phase)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ProjectId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" asp-controller="QuestionnaireController" asp-route-id="@Model.ProjectId" class="btn btn-light">Questionnaire</a>
+    <a asp-action="Edit" asp-route-id="@Model.ProjectId" class="btn btn-info">Result</a>
+    <a asp-action="Index" asp-controller="ProjectController" class="btn btn-primary">Back to List</a>
 </div>
