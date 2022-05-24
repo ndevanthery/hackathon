@@ -11,15 +11,21 @@
 <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="Input.Role"></label>
+                <select asp-for="Input.Role" name="Types" id="types">
+                    <option value="1">Agriculteur-trice</option>
+                    <option value="2">Conseiller-ere agricole</option>
+                    <option value="3">Architecte</option>
+                    <option value="4">Autorite</option>
+                    <option value="5">Banque</option>
+                </select>
 
-        <select name="Types" id="types">
-            <option value="1">Agriculteur-trice</option>
-            <option value="2">Conseiller-ere agricole</option>
-            <option value="3">Architecte</option>
-            <option value="4">Autorite</option>
-            <option value="5">Banque</option>
-        </select>
-
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-6">
             <div class="form-group">
                 <label asp-for="Input.FirstName"></label>
@@ -45,12 +51,12 @@
             </div>
         </div>
         @*<div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="Input.PhoneNumber"></label>
-                <input asp-for="Input.PhoneNumber" class="form-control" />
-                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
-            </div>
-        </div>*@
+                <div class="form-group">
+                    <label asp-for="Input.PhoneNumber"></label>
+                    <input asp-for="Input.PhoneNumber" class="form-control" />
+                    <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                </div>
+            </div>*@
     </div>
 
     <div class="row">

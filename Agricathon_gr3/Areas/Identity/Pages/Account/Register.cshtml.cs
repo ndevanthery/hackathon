@@ -46,6 +46,10 @@ namespace Agricathon_gr3.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
+            [Display(Name = "Rôle")]
+            public int Role { get; set; }
+
+            [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
@@ -83,6 +87,7 @@ namespace Agricathon_gr3.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
+                
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
