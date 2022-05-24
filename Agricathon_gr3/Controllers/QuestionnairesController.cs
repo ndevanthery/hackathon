@@ -6,12 +6,16 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Agricathon_gr3.Models;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
 
 namespace Agricathon_gr3.Controllers
 {
     public class QuestionnairesController : Controller
     {
         private readonly VSContext _context;
+        private SignInManager<IdentityUser> SignInManager;
 
         public QuestionnairesController(VSContext context)
         {
@@ -19,7 +23,21 @@ namespace Agricathon_gr3.Controllers
         }
 
         // GET: Questionnaires
-        public async Task<IActionResult> Index()
+
+        public async Task<IActionResult> Index(int projectId)
+        {
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (currentUserId is not null)
+            {
+                HttpContext.Session.SetInt32("projectId", projectId);
+        
+                return View(projectId);
+            }
+            else
+                return RedirectToAction("Index", "Home");
+                
+        }
+        public async Task<IActionResult> List()
         {
             var vSContext = _context.QuestionnaireDB.Include(q => q.Phase).Include(q => q.Project);
             return View(await vSContext.ToListAsync());
@@ -160,6 +178,29 @@ namespace Agricathon_gr3.Controllers
         private bool QuestionnaireExists(int id)
         {
             return _context.QuestionnaireDB.Any(e => e.QuestionnaireId == id);
+        }
+
+        private bool QuestionnaireExistsPhaseAndType(int idPhase, int type)
+        {
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            return _context.QuestionnaireDB.Where(e=> e.PersonId == currentUserId).Any(e => e.PhaseId == idPhase || e.TypeRId == type);
+        }
+
+        public async Task<IActionResult> socialButton()
+        {
+            var project = HttpContext.Session.GetInt32("projectId");
+            int idPhase = _context.ProjectDB.Where(e => e.ProjectId == project).Select(e => e.PhaseId).First();
+            if (QuestionnaireExistsPhaseAndType(idPhase, 2))
+            {
+                return RedirectToAction("Questionnaires", "Edit");
+            }
+            else
+            {
+                return RedirectToAction("Questionnaires", "Create");
+            }
+
+              
+            
         }
     }
 }

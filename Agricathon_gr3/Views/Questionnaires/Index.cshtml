@@ -1,59 +1,26 @@
-﻿@model IEnumerable<Agricathon_gr3.Models.Questionnaire>
-
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Create";
 }
+<h1>Questionnaires</h1>
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NameQuestionnaire)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TypeRId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Project)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Phase)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NameQuestionnaire)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TypeRId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Project.NameProject)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phase.NamePhase)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.QuestionnaireId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.QuestionnaireId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.QuestionnaireId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="card-group">
+    <div class="card">
+        <div class="card-title">Social</div>
+        <img class="card-img" src="https://cesie.org/media/score-inclusione-sport-1080x720.jpg" />
+        <input type="button" value="Faire le questionnaire" asp-controller="Questionnaires" asp-action="socialButton" />
+    </div>
+    <div class="card">
+        <div class="card-title">Environnemental</div>
+        <img class="card-img" src="https://d11o8pt3cttu38.cloudfront.net/wp-content/uploads/2022/02/fotolia_119789986_subscription_xxl-scaled-1-scaled.jpg" />
+        <input type="button" value="Faire le questionnaire" />
+    </div>
+    <div class="card">
+        <div class="card-title">Economique</div>
+        <img class="card-img" src="https://www.tresor.economie.gouv.fr/Articles/2405fa62-23fd-4299-a5ca-34e864d206b8/images/2244fab6-aa4e-4dc7-bde1-519fc4a08077" />
+        <input type="button" value="Faire le questionnaire" />
+    </div>
+</div>

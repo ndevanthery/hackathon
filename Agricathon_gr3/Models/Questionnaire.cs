@@ -17,7 +17,7 @@ namespace Agricathon_gr3.Models
         [Required]
         public DateTime Date { get; set; }
         [Required]
-        public int PersonId { get; set; }
+        public string PersonId { get; set; }
         [Required]
         public int PhaseId { get; set; }
         [Required]

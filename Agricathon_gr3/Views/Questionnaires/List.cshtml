@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Agricathon_gr3.Models.Questionnaire>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NameQuestionnaire)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeRId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Project)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phase)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameQuestionnaire)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeRId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Project.NameProject)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phase.NamePhase)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.QuestionnaireId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.QuestionnaireId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.QuestionnaireId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
