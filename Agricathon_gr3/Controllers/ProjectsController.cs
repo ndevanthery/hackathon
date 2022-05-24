@@ -46,7 +46,7 @@ namespace Agricathon_gr3.Controllers
             {
                 if (m.PersonId == currentUserId)
                 {
-                    ListProject.Add(await _context.ProjectDB.FirstOrDefaultAsync(p => p.ProjectId == m.ProjectId));
+                    ListProject.Add(await _context.ProjectDB.Include(l => l.Phase).FirstOrDefaultAsync(p => p.ProjectId == m.ProjectId));
                 }
             }
             //Where(m=>m.PersonId==currentUserId).ToListAsync();
