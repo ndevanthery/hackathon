@@ -40,13 +40,13 @@ namespace Agricathon_gr3.Controllers
         public async Task<IActionResult> Index()
         {
             var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            List<PersProject> List =await _context.PersProjectDB.ToListAsync();
+            List<PersProject> List = await _context.PersProjectDB.ToListAsync();
             List<Project> ListProject = new List<Project>();
             foreach (PersProject m in List)
             {
                 if (m.PersonId == currentUserId)
                 {
-                    ListProject.Add(m.Project);
+                    ListProject.Add(await _context.ProjectDB.FirstOrDefaultAsync(p => p.ProjectId == m.ProjectId));
                 }
             }
             //Where(m=>m.PersonId==currentUserId).ToListAsync();
@@ -96,8 +96,21 @@ namespace Agricathon_gr3.Controllers
         {
             if (ModelState.IsValid)
             {
+                var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
                 _context.Add(project);
                 await _context.SaveChangesAsync();
+                PersProject test = new PersProject
+                {
+                    ProjectId = project.ProjectId,
+                    PersonId = currentUserId,
+                };
+
+                _context.Add(test);
+
+                await _context.SaveChangesAsync();
+
+
                 return RedirectToAction(nameof(Index));
             }
             ViewData["PhaseId"] = new SelectList(_context.PhaseDB, "PhaseId", "NamePhase", project.PhaseId);
