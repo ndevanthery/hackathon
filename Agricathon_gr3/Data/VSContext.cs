@@ -44,7 +44,7 @@ namespace Agricathon_gr3.Models
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            builder.Entity<PersProject>().HasKey(x => new { x.PersonId, x.ProjetId });
+            builder.Entity<PersProject>().HasKey(x => new { x.PersonId, x.ProjectId });
             builder.Entity<Anwser>().HasKey(x => new { x.QuestionId, x.QuestionnaireId });
 
         }

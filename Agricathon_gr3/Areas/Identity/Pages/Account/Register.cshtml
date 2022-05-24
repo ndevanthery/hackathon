@@ -11,6 +11,15 @@
 <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="row">
+
+        <select name="Types" id="types">
+            <option value="1">Agriculteur-trice</option>
+            <option value="2">Conseiller-ere agricole</option>
+            <option value="3">Architecte</option>
+            <option value="4">Autorite</option>
+            <option value="5">Banque</option>
+        </select>
+
         <div class="col-md-6">
             <div class="form-group">
                 <label asp-for="Input.FirstName"></label>
