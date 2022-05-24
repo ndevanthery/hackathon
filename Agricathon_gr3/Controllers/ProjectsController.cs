@@ -41,16 +41,16 @@ namespace Agricathon_gr3.Controllers
         {
             var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             List<PersProject> List =await _context.PersProjectDB.ToListAsync();
-            List<Project> ListProject = new List<Project>();
+            List<Project> ListIdProject = new List<Project>();
             foreach (PersProject m in List)
             {
                 if (m.PersonId == currentUserId)
                 {
-                    ListProject.Add(m.Project);
+                    ListIdProject.Add(await _context.ProjectDB.FirstOrDefaultAsync(p=> p.ProjectId == m.ProjectId ));
                 }
             }
             //Where(m=>m.PersonId==currentUserId).ToListAsync();
-            return View(ListProject);
+            return View(ListIdProject);
         }
 
         // GET: Projects/Details/5
@@ -88,11 +88,25 @@ namespace Agricathon_gr3.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(project);
+                var projetAdded=  _context.Add(project);
                 await _context.SaveChangesAsync();
+
+                var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+                PersProject test = new PersProject
+                {
+                    PersonId = currentUserId,
+                    ProjectId = projetAdded.Entity.ProjectId,
+                };
+                _context.Add(test);
+                await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
+
             ViewData["PhaseId"] = new SelectList(_context.PhaseDB, "PhaseId", "NamePhase", project.PhaseId);
+
+
             return View(project);
         }
 
